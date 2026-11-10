@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareerPilot AI | Global Jobs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fc;color:#17233e}
+header{background:#101c39;color:white;padding:20px 6%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:bold}
+.logo span{color:#51d5c2}
+select,input,button{font:inherit}
+select{padding:10px;border-radius:9px;border:1px solid #ddd}
+.hero{background:linear-gradient(125deg,#101c39,#244d9b);color:white;text-align:center;padding:85px 6%}
+.hero h1{font-size:clamp(30px,6vw,52px);margin:0 0 20px}
+.hero p{font-size:18px;line-height:1.6;max-width:650px;margin:0 auto 30px;color:#dce7ff}
+.search{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:850px;margin:auto}
+.search input{padding:17px;border:0;border-radius:10px;flex:1 1 230px;min-width:0}
+button{background:#31c6ad;color:#09233a;border:0;border-radius:10px;padding:17px 25px;font-weight:bold;cursor:pointer}
+section{padding:55px 7%;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:30px}
+.card{background:white;padding:30px 20px;border-radius:15px;box-shadow:0 5px 22px #17233e12}
+.card h3{color:#244d9b}
+#result{margin-top:25px;font-weight:bold}
+footer{text-align:center;background:#101c39;color:#cbd5e1;padding:28px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">CareerPilot <span>AI</span></div>
+<select id="language" aria-label="Language" onchange="translatePage()">
+<option value="pt">Português</option>
+<option value="en">English</option>
+<option value="fr">Français</option>
+</select>
+</header>
+<div class="hero">
+<h1 id="headline">O teu futuro não tem fronteiras.</h1>
+<p id="subtitle">Descobre oportunidades de emprego em todo o mundo. Uma plataforma para ligar talentos a novas possibilidades.</p>
+<div class="search">
+<input id="job" placeholder="Profissão ou palavra-chave" aria-label="Profissão">
+<input id="country" placeholder="País ou cidade" aria-label="Localização">
+<button id="searchBtn" onclick="searchJobs()">Pesquisar empregos</button>
+</div>
+<div id="result" role="status"></div>
+</div>
+<section>
+<h2 id="features">Uma carreira sem fronteiras</h2>
+<div class="cards">
+<div class="card"><h3 id="f1">🌍 Oportunidades globais</h3><p id="d1">Explora possibilidades em diferentes países e setores.</p></div>
+<div class="card"><h3 id="f2">🤝 Para todos</h3><p id="d2">Uma plataforma pensada para pessoas de diferentes origens.</p></div>
+<div class="card"><h3 id="f3">✨ Tecnologia inteligente</h3><p id="d3">Estamos a desenvolver ferramentas de pesquisa assistida por IA.</p></div>
+</div>
+</section>
+<footer>© 2026 CareerPilot AI · Global Opportunities</footer>
+<script>
+const translations={
+pt:["O teu futuro não tem fronteiras.","Descobre oportunidades de emprego em todo o mundo. Uma plataforma para ligar talentos a novas possibilidades.","Profissão ou palavra-chave","País ou cidade","Pesquisar empregos","Uma carreira sem fronteiras","🌍 Oportunidades globais","Explora possibilidades em diferentes países e setores.","🤝 Para todos","Uma plataforma pensada para pessoas de diferentes origens.","✨ Tecnologia inteligente","Estamos a desenvolver ferramentas de pesquisa assistida por IA.","A pesquisa de vagas reais estará disponível em breve."],
+en:["Your future has no borders.","Discover job opportunities around the world. Connecting talent with new possibilities.","Job title or keyword","Country or city","Search jobs","Careers without borders","🌍 Global opportunities","Explore opportunities across countries and industries.","🤝 For everyone","Designed for people from different backgrounds.","✨ Smart technology","We are developing AI-assisted job search tools.","Live job search is coming soon."],
+fr:["Votre avenir n'a pas de frontières.","Découvrez des opportunités d'emploi dans le monde entier.","Métier ou mot-clé","Pays ou ville","Rechercher des emplois","Une carrière sans frontières","🌍 Opportunités mondiales","Explorez des possibilités dans différents pays et secteurs.","🤝 Pour tous","Une plateforme pour des personnes de tous horizons.","✨ Technologie intelligente","Nous développons des outils de recherche assistée par IA.","La recherche d'offres réelles sera bientôt disponible."]
+};
+function translatePage(){
+const lang=document.getElementById("language").value;
+const t=translations[lang];
+document.documentElement.lang=lang;
+["headline","subtitle"].forEach((id,i)=>document.getElementById(id).textContent=t[i]);
+document.getElementById("job").placeholder=t[2];
+document.getElementById("country").placeholder=t[3];
+["searchBtn","features","f1","d1","f2","d2","f3","d3"].forEach((id,i)=>document.getElementById(id).textContent=t[i+4]);
+document.getElementById("result").textContent="";
+}
+function searchJobs(){
+const lang=document.getElementById("language").value;
+document.getElementById("result").textContent=translations[lang][12];
+}
+</script>
+</body>
+</html>
